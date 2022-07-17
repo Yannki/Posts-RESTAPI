@@ -5,9 +5,9 @@ This is a microservice made in Flask that showcase my ability to work with exter
 <b><h3>Instalation</h3></b>
 Create your virtual environment for the project and then execute commands:
 <code>
-<br>pip install -r requirements.txt to install required libraries.
-<br>set FLASK_APP=main.py
-<br>flask run</code>
+<br>pip install -r requirements.txt</code> to install required libraries
+<br><code>set FLASK_APP=main.py</code>
+<br><code>flask run</code>
 <br>
 <br>
 
