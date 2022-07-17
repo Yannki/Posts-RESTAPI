@@ -42,9 +42,9 @@ posts = [{
 
 ########################Models##############################
 post_model = app.model('Post',
-                       {'id': fields.Integer,
-                        'userId': fields.Integer,
-                        'title': fields.String,
+                       {'id': fields.Integer(Required=True),
+                        'userId': fields.Integer(Required=True),
+                        'title': fields.String(Required=True),
                         'body': fields.String})
 ############################################################
 
@@ -66,7 +66,7 @@ class PostsCreateResource(Resource):
                             name_space.abort(
                                 500, e.__doc__, status="Could not retrieve information", statusCode="400")
                     posts.append(data)
-                    return jsonify(posts)
+                    return "Post added"
 
         except Exception as e:
             name_space.abort(
@@ -96,11 +96,17 @@ class PostsResource(Resource):
             name_space.abort(
                 400, e.__doc__, status="Could not retrieve information", statusCode="400")
 
+    @app.expect(post_model)
     @app.doc(responses={200: 'OK', 400: 'Invalid Argument', 500: 'Mapping Key Error'},
              params={'id': 'Specify the Id associated with the person'})
     def put(self, id):
         try:
-            pass
+            data = request.get_json()
+            for i in range(0,len(posts)):
+                if posts[i]['id']==id and data['userId'] == posts[i]['userId']:
+                    posts[i]['title'] = data['title']
+                    posts[i]['body'] = data['body']
+                    return "Post updated"
 
             name_space.abort(
                 500, e.__doc__, status="Could not retrieve information", statusCode="500")
@@ -115,7 +121,8 @@ class PostsResource(Resource):
         try:
             for i in range(0, len(posts)):
                 if posts[i]['id'] == id:
-                    return jsonify(posts.pop(i))
+                    posts.pop(i)
+                    return "Post deleted"
 
             name_space.abort(
                 500, e.__doc__, status="Could not retrieve information", statusCode="500")

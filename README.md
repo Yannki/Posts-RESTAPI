@@ -17,3 +17,11 @@ Python 3.9.x (developed in)
 <br>
 
 <i>Issues with indentation during development</i>
+
+<br>
+<h3>Further improvement</h3>
+<ul>
+<li>The data needs to be bind to database to get further input validation (unique id)</li>
+<li>containerisation (Docker container)</li>
+<li>UI</li>
+</ul>
