@@ -140,7 +140,7 @@ class UsersResouces(Resource):
     @app.doc(responses={200: 'OK', 400: 'Invalid Argument', 500: 'Mapping Key Error'},
              params={'id': 'Specify the Id associated with the person'})
     def get(self, id):
-        users_posts = []
+        user_posts = []
         try:
             for i in range(0, len(users)):
                 if users[i]['id'] == id:
